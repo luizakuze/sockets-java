@@ -1,0 +1,18 @@
+services:
+  gerenciador:
+    build: ./gerenciador-atualizacoes
+    networks: [rede-iot]
+    stdin_open: true
+    tty: true
+
+  dispositivo-iot:
+    build: ./dispositivo-iot
+    networks: [rede-iot]
+    ports:
+      - "1234"
+    #depends_on:
+    #  - gerenciador
+
+networks:
+  rede-iot:
+    driver: bridge
