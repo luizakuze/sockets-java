@@ -1,14 +1,12 @@
 # Prática com contêineres e sockets TCP/IP em Java
 
-## Funcionalidades obrigatórias 
-- Todos as funcionalidades do exercício foram atendidas.
+- Projeto de gerenciamento e atualização de dispositivos IoT desenvolvido em Java, utilizando comunicação em rede via TCP e Multicast.
 
-## Funcionalidades adicionais
-Além dos requisitos da atividade, foram adotados os seguintes comportamentos:
-- Se um dispositivo IoT possuir uma versão superior à do gerenciador (ex.: foi iniciada via argumento
-`java -jar dispositivo-IoT.jar 7`), ele não será atualizado, pois já está mais recente.
-- Caso o usuário não informe uma versão inicial ao iniciar o dispositivo IoT,
-a aplicação utiliza o último octeto do IP do dispositivo.
+- O sistema é composto por dois módulos principais:
+
+- `Dispositivo IoT`: representa os dispositivos conectados à rede. Cada dispositivo possui uma versão de software e escuta anúncios multicast do gerenciador. Caso receba uma solicitação de atualização e sua versão seja inferior à do gerenciador, realiza a atualização via conexão TCP. Se o dispositivo já estiver em uma versão mais recente, a atualização é ignorada. Quando não é informada uma versão inicial, o dispositivo utiliza o último octeto do seu endereço IP como versão.
+
+- `Gerenciador de Atualizações`: responsável por detectar dispositivos IoT ativos na rede, manter o controle das versões e coordenar o processo de atualização. O gerenciador envia anúncios via multicast e estabelece conexões TCP para atualizar dispositivos quando necessário, além de fornecer uma interface de comandos para o usuário.
 
 ## Execução do cenário de teste
 O cenário foi montado com 3 dispositivos IoT e 1 gerenciador.
